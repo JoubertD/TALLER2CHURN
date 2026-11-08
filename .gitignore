@@ -1,7 +1,8 @@
-﻿# Python
+﻿@"
+# Python
 __pycache__/
 *.py[cod]
-*.class
+*$py.class
 .venv/
 venv/
 ENV/
@@ -17,3 +18,4 @@ Thumbs.db
 
 # Entornos y Docker
 .env
+"@ | Out-File -FilePath .gitignore -Encoding utf8

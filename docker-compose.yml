@@ -1,0 +1,12 @@
+services:
+  jupyter:
+    build: .
+    container_name: finalpes_churn_taller2
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/workspace
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    restart: unless-stopped
+

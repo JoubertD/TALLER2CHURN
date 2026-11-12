@@ -21,25 +21,58 @@ El proyecto sigue una estructura limpia, modular y documentada:
 
 ```text
 TALLER2CHURN/
-├── data/
-│   └── Bank_Customer_Churn_Prediction.csv   # Dataset original (10.000 clientes)
+├── data/raw
+│   └── Bank_Customer_Churn_Prediction.csv   # Dataset original
 ├── notebooks/
 │   └── taller_churn.ipynb                   # Notebook ejecutable de inicio a fin
 ├── README.md                                # Informe ejecutivo y técnico
 └── requirements.txt                         # Dependencias y librerías del proyecto
 ```
 
-### Instrucciones de Reproducibilidad
-1. Clonar el repositorio y verificar la presencia de las librerías requeridas (`pandas`, `numpy`, `scikit-learn`, `xgboost`, `shap`, `lime`, `matplotlib`, `seaborn`).
-2. Abrir y ejecutar secuencialmente el notebook `notebooks/taller_churn.ipynb` (`Restart Kernel & Run All Cells`).
-3. El pipeline garantiza la ausencia de fuga de información (*zero data leakage*) mediante el uso de transformadores y estimadores de Scikit-Learn ajustados exclusivamente sobre el conjunto de entrenamiento.
+### Instrucciones para ejecutarlo
+
+Sigue estos pasos en la terminal para descargar y ejecutar el proyecto de principio a fin:
+
+1. **Clonar el repositorio y entrar a la carpeta del proyecto:**
+   ```bash
+   git clone https://github.com/JoubertD/TALLER2CHURN.git
+   cd TALLER2CHURN
+   ```
+
+2. **Crear y activar un entorno virtual (recomendado con Python 3.10 o superior):**
+   - **En Windows (PowerShell / CMD):**
+     ```powershell
+     python -m venv .venv
+     .\.venv\Scripts\activate
+     ```
+   - **En Linux / macOS:**
+     ```bash
+     python3 -m venv .venv
+     source .venv/bin/activate
+     ```
+
+3. **Instalar todas las librerías requeridas desde `requirements.txt`:**
+   ```bash
+   pip install --upgrade pip
+   pip install -r requirements.txt
+   ```
+
+4. **Abrir y ejecutar el notebook:**
+   - **Opción A — Desde Jupyter Lab:**
+     ```bash
+     jupyter lab notebooks/taller_churn.ipynb
+     ```
+   - **Opción B — Desde VS Code:**
+     Abrir la carpeta `TALLER2CHURN` en VS Code, abrir el archivo `notebooks/taller_churn.ipynb`, seleccionar el kernel `.venv` en la esquina superior derecha y presionar **Run All** (*Ejecutar todo*).
+
+> **Nota:** El flujo de trabajo ejecuta todas las celdas secuencialmente 
 
 ---
 
 ## 3. Preparación de Datos y Selección de Características
 
 ### 3.1. Partición de Datos (Sin Fuga de Información)
-El conjunto original de 10.000 registros (tasa natural de abandono del 20,35%) se dividió de manera estratificada en:
+El conjunto original (tasa natural de abandono del 20,35%) se dividió de manera estratificada en:
 * **Entrenamiento (Train - 60%):** 6.000 clientes. Ajuste de codificadores, escaladores e hiperparámetros.
 * **Validación (Validation - 20%):** 2.000 clientes. Comparación de familias de modelos y calibración de umbrales.
 * **Prueba (Test Hold-Out - 20%):** 2.000 clientes intactos (1.593 clientes leales y 407 desertores reales) para la validación definitiva.
@@ -158,9 +191,9 @@ Se contrastaron dos enfoques metodológicos de costos:
 En cumplimiento de las directrices académicas del curso, se deja constancia del uso de herramientas de Inteligencia Artificial Generativa (**Claude / Gemini**) durante el desarrollo del taller:
 
 * **Modalidad de Interacción:** Se interactuó con el modelo de lenguaje de forma **iterativa y guiada**, solicitando explicaciones conceptuales, validaciones matemáticas y propuestas de código para componentes específicos que luego fueron contrastados, ejecutados y ajustados por los integrantes del equipo, la IA se uso para la mayor parte del codigo aunque las decisiones de diseño, pruebas y conclusiones fueron netamente por el autor.
-* **Porcentaje Estimado de Asistencia:** **35%** (apoyo metodológico, en codigo y contraste de ecuaciones).
+* (apoyo metodológico, en codigo y contraste de ecuaciones).
 * **Alcance del Apoyo:**
   1. Revisión de las ecuaciones financieras de evaluación avanzada (Fórmula Simplificada y Ecuación de Provost & Fawcett).
   2. Apoyo en la sintaxis para empaquetar transformadores y clasificadores en Pipelines compatibles con SHAP y LIME.
   3. Redacción ejecutiva, síntesis y corrección de estilo para este archivo `README.md`.
-* **Autoría del Proyecto:** La formulación de hipótesis, la inspección exploratoria de datos, la decisión de remover la variable `gender`, la selección del modelo final, la interpretación del contexto bancario y la ejecución completa del código fueron realizadas y validadas directamente por los autores del taller.
+* **Autoría del Proyecto:** La formulación de hipótesis, la inspección exploratoria de datos, la decisión de remover la variable `gender`, la seleccion de columnas del dataset original, la selección del modelo final, la interpretación del contexto bancario y la ejecución completa del código fueron realizadas directamente por los autores del taller.
